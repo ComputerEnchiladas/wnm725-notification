@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SocketService } from '../../app/socket.service';
+import { Http } from '@angular/http';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { SocketService } from '../../app/socket.service';
 })
 export class ContactPage {
   public state;
-  constructor(public navCtrl: NavController, private socket: SocketService) {
+  constructor(public navCtrl: NavController, private socket: SocketService, private http: Http) {
 
   }
 
@@ -21,5 +22,11 @@ export class ContactPage {
         }
         console.log( led );
       })
+  }
+  sendMessage(){
+    this.http.post('http://10.10.47.200:6085/reply', {}).toPromise().then( (res) => {
+      console.log( res );
+      alert('Sent');
+    })
   }
 }

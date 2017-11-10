@@ -5,9 +5,9 @@ require('mahrio').runServer(process.env, __dirname).then(function (server) {
   var io = require('socket.io').listen(server.listener);
 
   var state = 1;
-  setInterval(function () {
-    io.sockets.emit('blink:led', state = !state);
-  }, 3000);
+  setTimeout(function () {
+    io.sockets.emit('blink:led', true);
+  }, 5000);
 
   server.route({
     method: 'GET',
@@ -15,5 +15,18 @@ require('mahrio').runServer(process.env, __dirname).then(function (server) {
     handler: function(req, rep){
       rep({running: true});
     }
+  });
+
+  server.route({
+    method: 'POST',
+    path: '/reply',
+    handler: function(req, rep){
+      console.log('MOBILE APP REPLIED');
+      rep({ok: true});
+    },
+    config: {
+      cors: true
+    }
   })
+
 });

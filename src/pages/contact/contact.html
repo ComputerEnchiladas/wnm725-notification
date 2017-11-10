@@ -8,7 +8,11 @@
 
 <ion-content>
   <ion-list>
-    <div [ngClass]="{active: state}" class="led">
+    <div *ngIf="state" class="led">
+      <h1>Notice</h1>
+
+      <p>You have a notice.</p>
+      <button class="btn btn-primary" (click)="sendMessage()">OK</button>
     </div>
   </ion-list>
 </ion-content>

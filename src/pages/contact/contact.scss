@@ -2,14 +2,8 @@ page-contact {
 
 }
 .led {
-  border-radius: 50%;
   border: 2px solid #333;
-  background: #999;
   width: 300px;
   height: 300px;
   margin: 50px auto 0;
-}
-
-.led.active {
-  background: green;
 }
